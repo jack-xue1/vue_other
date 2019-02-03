@@ -82,11 +82,13 @@
     </ul>
     <!--直接进行跨域请求方法-->
     <button @click="test">测试接口</button>
+    <button @click="test1">测试接口1</button>
   </div>
 </template>
 
 <script>
 import Button from "../../../../idea/vue-framework-wz-master/src/components/Button/CoolHoverButton";
+import {testPost}  from '../api/api'
 export default {
   name: 'HelloWorld',
   components: {Button},
@@ -106,7 +108,7 @@ export default {
         // console.log(data);
       }).then(data => {
         console.log(data);
-        console.log("注意此刻的data是一个：" + typeof data);
+        // console.log("注意此刻的data是一个：" + typeof data);
         data = JSON.parse(data);
         //对于返回的内容进行判断
         if (data.success == 1) {
@@ -114,6 +116,12 @@ export default {
           alert('测试成功');
         }
       });
+    },
+    test1:function () {
+        var data={name:'xs',sex: '男'}
+        //是将一个JavaScript值(对象或者数组)转换为一个 JSON字符串
+        // data=JSON.stringify(data);
+        testPost(data)
     }
   }
 }
